@@ -1,0 +1,1954 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:tns="c://inetub/wwwroot/webservice/Service.asmx" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="c://inetub/wwwroot/webservice/Service.asmx"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Service per inserimento anagrafica utenti</wsdl:documentation>
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified" targetNamespace="c://inetub/wwwroot/webservice/Service.asmx">
+			<s:element name="TipiTessera">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TipiTesseraResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TipiTesseraResult" type="tns:ArrayOfTipoTessera" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="ArrayOfTipoTessera">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="TipoTessera" type="tns:TipoTessera" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="TipoTessera">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="Valore" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Descrizione" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="TipiAbbonamento">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TipiAbbonamentoResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TipiAbbonamentoResult" type="tns:ArrayOfTipoAbbonamento" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="ArrayOfTipoAbbonamento">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="TipoAbbonamento" type="tns:TipoAbbonamento" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="TipoAbbonamento">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="Valore" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Descrizione" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="RicercaUtente">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="RicercaUtenteResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="RicercaUtenteResult" type="tns:ReturnMSG" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:simpleType name="ReturnMSG">
+				<s:restriction base="s:string">
+					<s:enumeration value="RivenditoreNonValido" />
+					<s:enumeration value="UtenteNonTrovato" />
+					<s:enumeration value="UtenteGiaEsistente" />
+					<s:enumeration value="ErroreTabellaUtente" />
+					<s:enumeration value="ErroreInserimentoAnagraficaUtente" />
+					<s:enumeration value="ErroreInserimentoUtente" />
+					<s:enumeration value="InserimentoRiuscito" />
+					<s:enumeration value="Campo_Obbligatorio" />
+					<s:enumeration value="erroreCAP" />
+					<s:enumeration value="erroreData" />
+					<s:enumeration value="EtaInferiore14" />
+					<s:enumeration value="Solo_F_M" />
+					<s:enumeration value="CodiceFiscaleErrato" />
+					<s:enumeration value="CampoEmailErrato" />
+					<s:enumeration value="CampoCreditoErrato" />
+					<s:enumeration value="TesseraNonTrovata" />
+					<s:enumeration value="TesseraTrovata" />
+					<s:enumeration value="ErroreNumeroTessera" />
+					<s:enumeration value="ErroreTabellaTessere" />
+					<s:enumeration value="NULL" />
+				</s:restriction>
+			</s:simpleType>
+			<s:element name="RicercaTesseraUtente">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="DatiAnagrafici" type="tns:AnagraficaUtente" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="AnagraficaUtente">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1" name="IdUtente" type="s:int" />
+					<s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="ComuneNascita" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="ProvinciaNascita" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="DataNascita" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="IndirizzoResidenza" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="ComuneResidenza" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="ProvinciaResidenza" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="CAP" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Cellulare" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1" name="Assicurazione" type="s:boolean" />
+					<s:element minOccurs="1" maxOccurs="1" name="IDProvinciaNascita" type="s:int" />
+					<s:element minOccurs="1" maxOccurs="1" name="IDProvinciaResidenza" type="s:int" />
+					<s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="NumeroTessera" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1" name="CreditoTessera" type="s:decimal" />
+					<s:element minOccurs="1" maxOccurs="1" name="ImportoRicarica" type="s:decimal" />
+					<s:element minOccurs="1" maxOccurs="1" name="ImportoCauzione" type="s:decimal" />
+					<s:element minOccurs="1" maxOccurs="1" name="ImportoAssicurazione" type="s:decimal" />
+					<s:element minOccurs="1" maxOccurs="1" name="Abbonamento" type="s:int" />
+					<s:element minOccurs="1" maxOccurs="1" name="TipologiaTessera" type="s:int" />
+					<s:element minOccurs="0" maxOccurs="1" name="NumeroTesseraSpecifico" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="RicercaTesseraUtenteResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="RicercaTesseraUtenteResult" type="tns:ReturnMSG" />
+						<s:element minOccurs="0" maxOccurs="1" name="DatiAnagrafici" type="tns:AnagraficaUtente" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="PrimaTesseraDisponibile">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="PrimaTesseraDisponibileResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="PrimaTesseraDisponibileResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TessereDisponibili">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TessereDisponibiliResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TessereDisponibiliResult" type="tns:ArrayOfString" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="ArrayOfString">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="TessereNonDisponibili">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TessereNonDisponibiliResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TessereNonDisponibiliResult" type="tns:ArrayOfString" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TesseraDisponibile">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="NumeroTessera" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TesseraDisponibileResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="TesseraDisponibileResult" type="s:boolean" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="Inserisci">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="ana" type="tns:AnagraficaUtente" />
+						<s:element minOccurs="1" maxOccurs="1" name="IDModalitaPagamento" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="InserisciResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="InserisciResult" type="tns:ReturnMSG" />
+						<s:element minOccurs="0" maxOccurs="1" name="ana" type="tns:AnagraficaUtente" />
+						<s:element minOccurs="1" maxOccurs="1" name="IDModalitaPagamento" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="InserisciConNumeroTessera">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="NumeroTesseraSpecifico" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="ana" type="tns:AnagraficaUtente" />
+						<s:element minOccurs="1" maxOccurs="1" name="IDModalitaPagamento" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="InserisciConNumeroTesseraResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="InserisciConNumeroTesseraResult" type="tns:ReturnMSG" />
+						<s:element minOccurs="0" maxOccurs="1" name="ana" type="tns:AnagraficaUtente" />
+						<s:element minOccurs="1" maxOccurs="1" name="IDModalitaPagamento" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="InserisciSoloAnagrafica">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="ana" type="tns:AnagraficaUtente" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="InserisciSoloAnagraficaResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="InserisciSoloAnagraficaResult" type="tns:ReturnMSG" />
+						<s:element minOccurs="0" maxOccurs="1" name="ana" type="tns:AnagraficaUtente" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioni">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoStazioniResult" type="tns:ArrayOfString" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniSemplice">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniSempliceResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoStazioniSempliceResult" type="tns:ArrayOfString" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniPerComune">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceComune" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniPerComuneResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoStazioniPerComuneResult" type="tns:ArrayOfString" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniSemplicePerComune">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceComune" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniSemplicePerComuneResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoStazioniSemplicePerComuneResult" type="tns:ArrayOfString" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniJSON">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniJSONResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoStazioniJSONResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniSempliceJSON">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniSempliceJSONResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoStazioniSempliceJSONResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniPerComuneJSON">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceComune" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniPerComuneJSONResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoStazioniPerComuneJSONResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniSemplicePerComuneJSON">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceComune" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoStazioniSemplicePerComuneJSONResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoStazioniSemplicePerComuneJSONResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CreazioneTesseraAPP">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="S" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="S1" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CreazioneTesseraAPPResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="CreazioneTesseraAPPResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="BTPay">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="p2" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="p3" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="p4" type="s:string" />
+						<s:element minOccurs="1" maxOccurs="1" name="p5" type="s:decimal" />
+						<s:element minOccurs="0" maxOccurs="1" name="p6" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="p7" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="p8" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="p9" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="BTPayResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="BTPayResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="DatiAbbonatoJSON">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="strCipherText" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="DatiAbbonatoJSONResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="DatiAbbonatoJSONResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetRandomKey">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetRandomKeyResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetRandomKeyResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetStationConfiguration">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceComune" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceStazione" type="s:string" />
+						<s:element minOccurs="1" maxOccurs="1" name="CodicePortale" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetStationConfigurationResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="GetStationConfigurationResult" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetColumnConfiguration">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceComune" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceStazione" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceColonnina" type="s:string" />
+						<s:element minOccurs="1" maxOccurs="1" name="CodicePortale" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetColumnConfigurationResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="GetColumnConfigurationResult" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="MobileGetBike">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="strCipherText" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="strIdstazione" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="strColonnina" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="MobileGetBikeResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="1" maxOccurs="1" name="MobileGetBikeResult" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="UsernamePasswordDaBadge">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="TagBadge" type="s:string" />
+						<s:element minOccurs="1" maxOccurs="1" name="IDComune" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="UsernamePasswordDaBadgeResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernamePasswordDaBadgeResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CodiceComuneCodice">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="Comune" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CodiceComuneCodiceResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="CodiceComuneCodiceResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CalcolaCodiceFiscale">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+						<s:element minOccurs="1" maxOccurs="1" name="DataNascita" type="s:dateTime" />
+						<s:element minOccurs="0" maxOccurs="1" name="ComuneNascita" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CalcolaCodiceFiscaleResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="CalcolaCodiceFiscaleResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoComuniPerPortale">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="1" maxOccurs="1" name="IDPortale" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoComuniPerPortaleResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoComuniPerPortaleResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoComuniPerPortaleAPP">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="1" maxOccurs="1" name="IDPortale" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoComuniPerPortaleAPPResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoComuniPerPortaleAPPResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoComuniPerPortaleJSON">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="UsernameRivenditore" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="PasswordRivenditore" type="s:string" />
+						<s:element minOccurs="1" maxOccurs="1" name="IDPortale" type="s:int" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoComuniPerPortaleJSONResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoComuniPerPortaleJSONResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CreazioneUtenteAPP">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="S" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CreazioneUtenteAPPResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="CreazioneUtenteAPPResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ViaggiUtenteAPP">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="S" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ViaggiUtenteAPPResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ViaggiUtenteAPPResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="DatiUtenteAPP">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="lingua" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="strCipherText" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="DatiUtenteAPPResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="DatiUtenteAPPResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoAbbonamentiPerComune">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="S" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ElencoAbbonamentiPerComuneResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ElencoAbbonamentiPerComuneResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemTipiAbbonamenti">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="X" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemTipiAbbonamentiResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TotemTipiAbbonamentiResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemInvioSMS">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="X" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemInvioSMSResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TotemInvioSMSResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemControlloSMS">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="X" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemControlloSMSResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TotemControlloSMSResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemTipiPagamenti">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="X" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemTipiPagamentiResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TotemTipiPagamentiResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemSalvaTransazione">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="X" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="TotemSalvaTransazioneResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="TotemSalvaTransazioneResult" type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="TipiTesseraSoapIn">
+		<wsdl:part name="parameters" element="tns:TipiTessera" />
+	</wsdl:message>
+	<wsdl:message name="TipiTesseraSoapOut">
+		<wsdl:part name="parameters" element="tns:TipiTesseraResponse" />
+	</wsdl:message>
+	<wsdl:message name="TipiAbbonamentoSoapIn">
+		<wsdl:part name="parameters" element="tns:TipiAbbonamento" />
+	</wsdl:message>
+	<wsdl:message name="TipiAbbonamentoSoapOut">
+		<wsdl:part name="parameters" element="tns:TipiAbbonamentoResponse" />
+	</wsdl:message>
+	<wsdl:message name="RicercaUtenteSoapIn">
+		<wsdl:part name="parameters" element="tns:RicercaUtente" />
+	</wsdl:message>
+	<wsdl:message name="RicercaUtenteSoapOut">
+		<wsdl:part name="parameters" element="tns:RicercaUtenteResponse" />
+	</wsdl:message>
+	<wsdl:message name="RicercaTesseraUtenteSoapIn">
+		<wsdl:part name="parameters" element="tns:RicercaTesseraUtente" />
+	</wsdl:message>
+	<wsdl:message name="RicercaTesseraUtenteSoapOut">
+		<wsdl:part name="parameters" element="tns:RicercaTesseraUtenteResponse" />
+	</wsdl:message>
+	<wsdl:message name="PrimaTesseraDisponibileSoapIn">
+		<wsdl:part name="parameters" element="tns:PrimaTesseraDisponibile" />
+	</wsdl:message>
+	<wsdl:message name="PrimaTesseraDisponibileSoapOut">
+		<wsdl:part name="parameters" element="tns:PrimaTesseraDisponibileResponse" />
+	</wsdl:message>
+	<wsdl:message name="TessereDisponibiliSoapIn">
+		<wsdl:part name="parameters" element="tns:TessereDisponibili" />
+	</wsdl:message>
+	<wsdl:message name="TessereDisponibiliSoapOut">
+		<wsdl:part name="parameters" element="tns:TessereDisponibiliResponse" />
+	</wsdl:message>
+	<wsdl:message name="TessereNonDisponibiliSoapIn">
+		<wsdl:part name="parameters" element="tns:TessereNonDisponibili" />
+	</wsdl:message>
+	<wsdl:message name="TessereNonDisponibiliSoapOut">
+		<wsdl:part name="parameters" element="tns:TessereNonDisponibiliResponse" />
+	</wsdl:message>
+	<wsdl:message name="TesseraDisponibileSoapIn">
+		<wsdl:part name="parameters" element="tns:TesseraDisponibile" />
+	</wsdl:message>
+	<wsdl:message name="TesseraDisponibileSoapOut">
+		<wsdl:part name="parameters" element="tns:TesseraDisponibileResponse" />
+	</wsdl:message>
+	<wsdl:message name="InserisciSoapIn">
+		<wsdl:part name="parameters" element="tns:Inserisci" />
+	</wsdl:message>
+	<wsdl:message name="InserisciSoapOut">
+		<wsdl:part name="parameters" element="tns:InserisciResponse" />
+	</wsdl:message>
+	<wsdl:message name="InserisciConNumeroTesseraSoapIn">
+		<wsdl:part name="parameters" element="tns:InserisciConNumeroTessera" />
+	</wsdl:message>
+	<wsdl:message name="InserisciConNumeroTesseraSoapOut">
+		<wsdl:part name="parameters" element="tns:InserisciConNumeroTesseraResponse" />
+	</wsdl:message>
+	<wsdl:message name="InserisciSoloAnagraficaSoapIn">
+		<wsdl:part name="parameters" element="tns:InserisciSoloAnagrafica" />
+	</wsdl:message>
+	<wsdl:message name="InserisciSoloAnagraficaSoapOut">
+		<wsdl:part name="parameters" element="tns:InserisciSoloAnagraficaResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoStazioni" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSempliceSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniSemplice" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSempliceSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniSempliceResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniPerComuneSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniPerComune" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniPerComuneSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniPerComuneResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSemplicePerComuneSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniSemplicePerComune" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSemplicePerComuneSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniSemplicePerComuneResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniJSONSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniJSON" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniJSONSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniJSONResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSempliceJSONSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniSempliceJSON" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSempliceJSONSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniSempliceJSONResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniPerComuneJSONSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniPerComuneJSON" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniPerComuneJSONSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniPerComuneJSONResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSemplicePerComuneJSONSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniSemplicePerComuneJSON" />
+	</wsdl:message>
+	<wsdl:message name="ElencoStazioniSemplicePerComuneJSONSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoStazioniSemplicePerComuneJSONResponse" />
+	</wsdl:message>
+	<wsdl:message name="CreazioneTesseraAPPSoapIn">
+		<wsdl:part name="parameters" element="tns:CreazioneTesseraAPP" />
+	</wsdl:message>
+	<wsdl:message name="CreazioneTesseraAPPSoapOut">
+		<wsdl:part name="parameters" element="tns:CreazioneTesseraAPPResponse" />
+	</wsdl:message>
+	<wsdl:message name="BTPaySoapIn">
+		<wsdl:part name="parameters" element="tns:BTPay" />
+	</wsdl:message>
+	<wsdl:message name="BTPaySoapOut">
+		<wsdl:part name="parameters" element="tns:BTPayResponse" />
+	</wsdl:message>
+	<wsdl:message name="DatiAbbonatoJSONSoapIn">
+		<wsdl:part name="parameters" element="tns:DatiAbbonatoJSON" />
+	</wsdl:message>
+	<wsdl:message name="DatiAbbonatoJSONSoapOut">
+		<wsdl:part name="parameters" element="tns:DatiAbbonatoJSONResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetRandomKeySoapIn">
+		<wsdl:part name="parameters" element="tns:GetRandomKey" />
+	</wsdl:message>
+	<wsdl:message name="GetRandomKeySoapOut">
+		<wsdl:part name="parameters" element="tns:GetRandomKeyResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetStationConfigurationSoapIn">
+		<wsdl:part name="parameters" element="tns:GetStationConfiguration" />
+	</wsdl:message>
+	<wsdl:message name="GetStationConfigurationSoapOut">
+		<wsdl:part name="parameters" element="tns:GetStationConfigurationResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetColumnConfigurationSoapIn">
+		<wsdl:part name="parameters" element="tns:GetColumnConfiguration" />
+	</wsdl:message>
+	<wsdl:message name="GetColumnConfigurationSoapOut">
+		<wsdl:part name="parameters" element="tns:GetColumnConfigurationResponse" />
+	</wsdl:message>
+	<wsdl:message name="MobileGetBikeSoapIn">
+		<wsdl:part name="parameters" element="tns:MobileGetBike" />
+	</wsdl:message>
+	<wsdl:message name="MobileGetBikeSoapOut">
+		<wsdl:part name="parameters" element="tns:MobileGetBikeResponse" />
+	</wsdl:message>
+	<wsdl:message name="UsernamePasswordDaBadgeSoapIn">
+		<wsdl:part name="parameters" element="tns:UsernamePasswordDaBadge" />
+	</wsdl:message>
+	<wsdl:message name="UsernamePasswordDaBadgeSoapOut">
+		<wsdl:part name="parameters" element="tns:UsernamePasswordDaBadgeResponse" />
+	</wsdl:message>
+	<wsdl:message name="CodiceComuneCodiceSoapIn">
+		<wsdl:part name="parameters" element="tns:CodiceComuneCodice" />
+	</wsdl:message>
+	<wsdl:message name="CodiceComuneCodiceSoapOut">
+		<wsdl:part name="parameters" element="tns:CodiceComuneCodiceResponse" />
+	</wsdl:message>
+	<wsdl:message name="CalcolaCodiceFiscaleSoapIn">
+		<wsdl:part name="parameters" element="tns:CalcolaCodiceFiscale" />
+	</wsdl:message>
+	<wsdl:message name="CalcolaCodiceFiscaleSoapOut">
+		<wsdl:part name="parameters" element="tns:CalcolaCodiceFiscaleResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoComuniPerPortaleSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoComuniPerPortale" />
+	</wsdl:message>
+	<wsdl:message name="ElencoComuniPerPortaleSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoComuniPerPortaleResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoComuniPerPortaleAPPSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoComuniPerPortaleAPP" />
+	</wsdl:message>
+	<wsdl:message name="ElencoComuniPerPortaleAPPSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoComuniPerPortaleAPPResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoComuniPerPortaleJSONSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoComuniPerPortaleJSON" />
+	</wsdl:message>
+	<wsdl:message name="ElencoComuniPerPortaleJSONSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoComuniPerPortaleJSONResponse" />
+	</wsdl:message>
+	<wsdl:message name="CreazioneUtenteAPPSoapIn">
+		<wsdl:part name="parameters" element="tns:CreazioneUtenteAPP" />
+	</wsdl:message>
+	<wsdl:message name="CreazioneUtenteAPPSoapOut">
+		<wsdl:part name="parameters" element="tns:CreazioneUtenteAPPResponse" />
+	</wsdl:message>
+	<wsdl:message name="ViaggiUtenteAPPSoapIn">
+		<wsdl:part name="parameters" element="tns:ViaggiUtenteAPP" />
+	</wsdl:message>
+	<wsdl:message name="ViaggiUtenteAPPSoapOut">
+		<wsdl:part name="parameters" element="tns:ViaggiUtenteAPPResponse" />
+	</wsdl:message>
+	<wsdl:message name="DatiUtenteAPPSoapIn">
+		<wsdl:part name="parameters" element="tns:DatiUtenteAPP" />
+	</wsdl:message>
+	<wsdl:message name="DatiUtenteAPPSoapOut">
+		<wsdl:part name="parameters" element="tns:DatiUtenteAPPResponse" />
+	</wsdl:message>
+	<wsdl:message name="ElencoAbbonamentiPerComuneSoapIn">
+		<wsdl:part name="parameters" element="tns:ElencoAbbonamentiPerComune" />
+	</wsdl:message>
+	<wsdl:message name="ElencoAbbonamentiPerComuneSoapOut">
+		<wsdl:part name="parameters" element="tns:ElencoAbbonamentiPerComuneResponse" />
+	</wsdl:message>
+	<wsdl:message name="TotemTipiAbbonamentiSoapIn">
+		<wsdl:part name="parameters" element="tns:TotemTipiAbbonamenti" />
+	</wsdl:message>
+	<wsdl:message name="TotemTipiAbbonamentiSoapOut">
+		<wsdl:part name="parameters" element="tns:TotemTipiAbbonamentiResponse" />
+	</wsdl:message>
+	<wsdl:message name="TotemInvioSMSSoapIn">
+		<wsdl:part name="parameters" element="tns:TotemInvioSMS" />
+	</wsdl:message>
+	<wsdl:message name="TotemInvioSMSSoapOut">
+		<wsdl:part name="parameters" element="tns:TotemInvioSMSResponse" />
+	</wsdl:message>
+	<wsdl:message name="TotemControlloSMSSoapIn">
+		<wsdl:part name="parameters" element="tns:TotemControlloSMS" />
+	</wsdl:message>
+	<wsdl:message name="TotemControlloSMSSoapOut">
+		<wsdl:part name="parameters" element="tns:TotemControlloSMSResponse" />
+	</wsdl:message>
+	<wsdl:message name="TotemTipiPagamentiSoapIn">
+		<wsdl:part name="parameters" element="tns:TotemTipiPagamenti" />
+	</wsdl:message>
+	<wsdl:message name="TotemTipiPagamentiSoapOut">
+		<wsdl:part name="parameters" element="tns:TotemTipiPagamentiResponse" />
+	</wsdl:message>
+	<wsdl:message name="TotemSalvaTransazioneSoapIn">
+		<wsdl:part name="parameters" element="tns:TotemSalvaTransazione" />
+	</wsdl:message>
+	<wsdl:message name="TotemSalvaTransazioneSoapOut">
+		<wsdl:part name="parameters" element="tns:TotemSalvaTransazioneResponse" />
+	</wsdl:message>
+	<wsdl:portType name="TOBikeUtenteSoap">
+		<wsdl:operation name="TipiTessera">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Tipologie di tessera disponibili</wsdl:documentation>
+			<wsdl:input message="tns:TipiTesseraSoapIn" />
+			<wsdl:output message="tns:TipiTesseraSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TipiAbbonamento">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Tipologie di abbonamento disponibili</wsdl:documentation>
+			<wsdl:input message="tns:TipiAbbonamentoSoapIn" />
+			<wsdl:output message="tns:TipiAbbonamentoSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="RicercaUtente">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca utente</wsdl:documentation>
+			<wsdl:input message="tns:RicercaUtenteSoapIn" />
+			<wsdl:output message="tns:RicercaUtenteSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="RicercaTesseraUtente">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca tessera utente</wsdl:documentation>
+			<wsdl:input message="tns:RicercaTesseraUtenteSoapIn" />
+			<wsdl:output message="tns:RicercaTesseraUtenteSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="PrimaTesseraDisponibile">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca la prima tessera disponibile del rivenditore</wsdl:documentation>
+			<wsdl:input message="tns:PrimaTesseraDisponibileSoapIn" />
+			<wsdl:output message="tns:PrimaTesseraDisponibileSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TessereDisponibili">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca tutte le tessere disponibili del rivenditore</wsdl:documentation>
+			<wsdl:input message="tns:TessereDisponibiliSoapIn" />
+			<wsdl:output message="tns:TessereDisponibiliSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TessereNonDisponibili">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca tutte le tessere utilizzate del rivenditore</wsdl:documentation>
+			<wsdl:input message="tns:TessereNonDisponibiliSoapIn" />
+			<wsdl:output message="tns:TessereNonDisponibiliSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TesseraDisponibile">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica se una tessera è stata già assegnata ad un utente</wsdl:documentation>
+			<wsdl:input message="tns:TesseraDisponibileSoapIn" />
+			<wsdl:output message="tns:TesseraDisponibileSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="Inserisci">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserisce un nuovo utente e associa la prima tessera disponibile</wsdl:documentation>
+			<wsdl:input message="tns:InserisciSoapIn" />
+			<wsdl:output message="tns:InserisciSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="InserisciConNumeroTessera">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserisce un nuovo utente e associa una tessera specifica</wsdl:documentation>
+			<wsdl:input message="tns:InserisciConNumeroTesseraSoapIn" />
+			<wsdl:output message="tns:InserisciConNumeroTesseraSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="InserisciSoloAnagrafica">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Inserisce un nuovo utente (solo dati anagrafici e di accesso)</wsdl:documentation>
+			<wsdl:input message="tns:InserisciSoloAnagraficaSoapIn" />
+			<wsdl:output message="tns:InserisciSoloAnagraficaSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioni">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenca le stazioni ed il loro stato attuale</wsdl:documentation>
+			<wsdl:input message="tns:ElencoStazioniSoapIn" />
+			<wsdl:output message="tns:ElencoStazioniSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplice">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenco semplificato delle stazioni e del loro stato attuale</wsdl:documentation>
+			<wsdl:input message="tns:ElencoStazioniSempliceSoapIn" />
+			<wsdl:output message="tns:ElencoStazioniSempliceSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniPerComune">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenca le stazioni ed il loro stato attuale per specifico comune</wsdl:documentation>
+			<wsdl:input message="tns:ElencoStazioniPerComuneSoapIn" />
+			<wsdl:output message="tns:ElencoStazioniPerComuneSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplicePerComune">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenco semplificato delle stazioni e del loro stato attuale per specifico comune</wsdl:documentation>
+			<wsdl:input message="tns:ElencoStazioniSemplicePerComuneSoapIn" />
+			<wsdl:output message="tns:ElencoStazioniSemplicePerComuneSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniJSON">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenca le stazioni ed il loro stato attuale in JSON</wsdl:documentation>
+			<wsdl:input message="tns:ElencoStazioniJSONSoapIn" />
+			<wsdl:output message="tns:ElencoStazioniJSONSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSempliceJSON">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenco semplificato delle stazioni e del loro stato attuale in JSON</wsdl:documentation>
+			<wsdl:input message="tns:ElencoStazioniSempliceJSONSoapIn" />
+			<wsdl:output message="tns:ElencoStazioniSempliceJSONSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniPerComuneJSON">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenca le stazioni ed il loro stato attuale per specifico comune in JSON</wsdl:documentation>
+			<wsdl:input message="tns:ElencoStazioniPerComuneJSONSoapIn" />
+			<wsdl:output message="tns:ElencoStazioniPerComuneJSONSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplicePerComuneJSON">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenco semplificato delle stazioni e del loro stato attuale per specifico comune in JSON
+			</wsdl:documentation>
+			<wsdl:input message="tns:ElencoStazioniSemplicePerComuneJSONSoapIn" />
+			<wsdl:output message="tns:ElencoStazioniSemplicePerComuneJSONSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="CreazioneTesseraAPP">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Crea tessera utente APP</wsdl:documentation>
+			<wsdl:input message="tns:CreazioneTesseraAPPSoapIn" />
+			<wsdl:output message="tns:CreazioneTesseraAPPSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="BTPay">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Transazione PayPal</wsdl:documentation>
+			<wsdl:input message="tns:BTPaySoapIn" />
+			<wsdl:output message="tns:BTPaySoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="DatiAbbonatoJSON">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Dati abbonato in JSON</wsdl:documentation>
+			<wsdl:input message="tns:DatiAbbonatoJSONSoapIn" />
+			<wsdl:output message="tns:DatiAbbonatoJSONSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetRandomKey">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get chiave casuale</wsdl:documentation>
+			<wsdl:input message="tns:GetRandomKeySoapIn" />
+			<wsdl:output message="tns:GetRandomKeySoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetStationConfiguration">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Richiesta configurazione stazione</wsdl:documentation>
+			<wsdl:input message="tns:GetStationConfigurationSoapIn" />
+			<wsdl:output message="tns:GetStationConfigurationSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetColumnConfiguration">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Richiesta configurazione colonnina</wsdl:documentation>
+			<wsdl:input message="tns:GetColumnConfigurationSoapIn" />
+			<wsdl:output message="tns:GetColumnConfigurationSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="MobileGetBike">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ottiene la bici da Mobile</wsdl:documentation>
+			<wsdl:input message="tns:MobileGetBikeSoapIn" />
+			<wsdl:output message="tns:MobileGetBikeSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="UsernamePasswordDaBadge">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ottiene lo username e la password di un utente di cui si conosce il tag badge e il comune
+			</wsdl:documentation>
+			<wsdl:input message="tns:UsernamePasswordDaBadgeSoapIn" />
+			<wsdl:output message="tns:UsernamePasswordDaBadgeSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="CodiceComuneCodice">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricava il codice del Comune per il calcolo del codice fiscale</wsdl:documentation>
+			<wsdl:input message="tns:CodiceComuneCodiceSoapIn" />
+			<wsdl:output message="tns:CodiceComuneCodiceSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="CalcolaCodiceFiscale">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calcola il codice fiscale</wsdl:documentation>
+			<wsdl:input message="tns:CalcolaCodiceFiscaleSoapIn" />
+			<wsdl:output message="tns:CalcolaCodiceFiscaleSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortale">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenco Comuni abilitati per singolo Portale</wsdl:documentation>
+			<wsdl:input message="tns:ElencoComuniPerPortaleSoapIn" />
+			<wsdl:output message="tns:ElencoComuniPerPortaleSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortaleAPP">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenco Comuni abilitati per singolo Portale APP</wsdl:documentation>
+			<wsdl:input message="tns:ElencoComuniPerPortaleAPPSoapIn" />
+			<wsdl:output message="tns:ElencoComuniPerPortaleAPPSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortaleJSON">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenco Comuni abilitati per singolo Portale in JSON</wsdl:documentation>
+			<wsdl:input message="tns:ElencoComuniPerPortaleJSONSoapIn" />
+			<wsdl:output message="tns:ElencoComuniPerPortaleJSONSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="CreazioneUtenteAPP">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Crea anagrafica utente APP</wsdl:documentation>
+			<wsdl:input message="tns:CreazioneUtenteAPPSoapIn" />
+			<wsdl:output message="tns:CreazioneUtenteAPPSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ViaggiUtenteAPP">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Lista viaggi utente APP</wsdl:documentation>
+			<wsdl:input message="tns:ViaggiUtenteAPPSoapIn" />
+			<wsdl:output message="tns:ViaggiUtenteAPPSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="DatiUtenteAPP">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Dati utente APP</wsdl:documentation>
+			<wsdl:input message="tns:DatiUtenteAPPSoapIn" />
+			<wsdl:output message="tns:DatiUtenteAPPSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="ElencoAbbonamentiPerComune">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Elenco Abbonamenti per Comune</wsdl:documentation>
+			<wsdl:input message="tns:ElencoAbbonamentiPerComuneSoapIn" />
+			<wsdl:output message="tns:ElencoAbbonamentiPerComuneSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TotemTipiAbbonamenti">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Totem richiede i tipi di abbonamento del Comune</wsdl:documentation>
+			<wsdl:input message="tns:TotemTipiAbbonamentiSoapIn" />
+			<wsdl:output message="tns:TotemTipiAbbonamentiSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TotemInvioSMS">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Totem richiede invio SMS di verifica</wsdl:documentation>
+			<wsdl:input message="tns:TotemInvioSMSSoapIn" />
+			<wsdl:output message="tns:TotemInvioSMSSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TotemControlloSMS">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Totem richiede controllo del codice di sicurezza inviato via SMS</wsdl:documentation>
+			<wsdl:input message="tns:TotemControlloSMSSoapIn" />
+			<wsdl:output message="tns:TotemControlloSMSSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TotemTipiPagamenti">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Totem richiede i tipi di pagamento accettati dal comune</wsdl:documentation>
+			<wsdl:input message="tns:TotemTipiPagamentiSoapIn" />
+			<wsdl:output message="tns:TotemTipiPagamentiSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="TotemSalvaTransazione">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Totem conferma la transazione</wsdl:documentation>
+			<wsdl:input message="tns:TotemSalvaTransazioneSoapIn" />
+			<wsdl:output message="tns:TotemSalvaTransazioneSoapOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="TOBikeUtenteSoap" type="tns:TOBikeUtenteSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="TipiTessera">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TipiTessera" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TipiAbbonamento">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TipiAbbonamento" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaUtente">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/RicercaUtente" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaTesseraUtente">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/RicercaTesseraUtente" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PrimaTesseraDisponibile">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/PrimaTesseraDisponibile" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TessereDisponibili">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TessereDisponibili" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TessereNonDisponibili">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TessereNonDisponibili" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TesseraDisponibile">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TesseraDisponibile" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Inserisci">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/Inserisci" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="InserisciConNumeroTessera">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/InserisciConNumeroTessera" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="InserisciSoloAnagrafica">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/InserisciSoloAnagrafica" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioni">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioni" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplice">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniSemplice" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniPerComune">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniPerComune" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplicePerComune">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniSemplicePerComune" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniJSON">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniJSON" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSempliceJSON">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniSempliceJSON" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniPerComuneJSON">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniPerComuneJSON" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplicePerComuneJSON">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniSemplicePerComuneJSON" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreazioneTesseraAPP">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/CreazioneTesseraAPP" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="BTPay">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/BTPay" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DatiAbbonatoJSON">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/DatiAbbonatoJSON" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetRandomKey">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/GetRandomKey" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetStationConfiguration">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/GetStationConfiguration" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetColumnConfiguration">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/GetColumnConfiguration" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="MobileGetBike">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/MobileGetBike" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UsernamePasswordDaBadge">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/UsernamePasswordDaBadge" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CodiceComuneCodice">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/CodiceComuneCodice" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CalcolaCodiceFiscale">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/CalcolaCodiceFiscale" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortale">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoComuniPerPortale" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortaleAPP">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoComuniPerPortaleAPP" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortaleJSON">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoComuniPerPortaleJSON" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreazioneUtenteAPP">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/CreazioneUtenteAPP" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ViaggiUtenteAPP">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ViaggiUtenteAPP" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DatiUtenteAPP">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/DatiUtenteAPP" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoAbbonamentiPerComune">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoAbbonamentiPerComune" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemTipiAbbonamenti">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemTipiAbbonamenti" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemInvioSMS">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemInvioSMS" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemControlloSMS">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemControlloSMS" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemTipiPagamenti">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemTipiPagamenti" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemSalvaTransazione">
+			<soap:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemSalvaTransazione" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="TOBikeUtenteSoap12" type="tns:TOBikeUtenteSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="TipiTessera">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TipiTessera" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TipiAbbonamento">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TipiAbbonamento" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaUtente">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/RicercaUtente" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaTesseraUtente">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/RicercaTesseraUtente" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PrimaTesseraDisponibile">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/PrimaTesseraDisponibile" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TessereDisponibili">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TessereDisponibili" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TessereNonDisponibili">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TessereNonDisponibili" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TesseraDisponibile">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TesseraDisponibile" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Inserisci">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/Inserisci" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="InserisciConNumeroTessera">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/InserisciConNumeroTessera" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="InserisciSoloAnagrafica">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/InserisciSoloAnagrafica" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioni">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioni" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplice">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniSemplice" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniPerComune">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniPerComune" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplicePerComune">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniSemplicePerComune" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniJSON">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniJSON" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSempliceJSON">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniSempliceJSON" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniPerComuneJSON">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniPerComuneJSON" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoStazioniSemplicePerComuneJSON">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoStazioniSemplicePerComuneJSON" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreazioneTesseraAPP">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/CreazioneTesseraAPP" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="BTPay">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/BTPay" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DatiAbbonatoJSON">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/DatiAbbonatoJSON" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetRandomKey">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/GetRandomKey" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetStationConfiguration">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/GetStationConfiguration" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetColumnConfiguration">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/GetColumnConfiguration" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="MobileGetBike">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/MobileGetBike" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UsernamePasswordDaBadge">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/UsernamePasswordDaBadge" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CodiceComuneCodice">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/CodiceComuneCodice" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CalcolaCodiceFiscale">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/CalcolaCodiceFiscale" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortale">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoComuniPerPortale" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortaleAPP">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoComuniPerPortaleAPP" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoComuniPerPortaleJSON">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoComuniPerPortaleJSON" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreazioneUtenteAPP">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/CreazioneUtenteAPP" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ViaggiUtenteAPP">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ViaggiUtenteAPP" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DatiUtenteAPP">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/DatiUtenteAPP" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ElencoAbbonamentiPerComune">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/ElencoAbbonamentiPerComune" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemTipiAbbonamenti">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemTipiAbbonamenti" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemInvioSMS">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemInvioSMS" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemControlloSMS">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemControlloSMS" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemTipiPagamenti">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemTipiPagamenti" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TotemSalvaTransazione">
+			<soap12:operation soapAction="c://inetub/wwwroot/webservice/Service.asmx/TotemSalvaTransazione" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="TOBikeUtente">
+		<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Service per inserimento anagrafica utenti</wsdl:documentation>
+		<wsdl:port name="TOBikeUtenteSoap" binding="tns:TOBikeUtenteSoap">
+			<soap:address location="http://service.tobike.it/service.asmx" />
+		</wsdl:port>
+		<wsdl:port name="TOBikeUtenteSoap12" binding="tns:TOBikeUtenteSoap12">
+			<soap12:address location="http://service.tobike.it/service.asmx" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

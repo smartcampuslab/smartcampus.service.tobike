@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataflow xmlns="http://www.example.org/mml-schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/mml-schema mml-schema.xsd ">
+
+	<input name="user" type="String" />
+	<input name="password" type="String" />
+	<input name="code" type="String" />
+
+	<script outputVar="output">
+		<className>eu.trentorise.smartcampus.service.tobike.scripts.TobikeScript</className>
+		<method>getStazioni</method>
+		<variables>
+			<value>user</value>
+			<value>password</value>
+			<value>code</value>
+		</variables>
+	</script>
+
+
+</dataflow>

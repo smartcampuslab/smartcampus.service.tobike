@@ -1,0 +1,12 @@
+package eu.trentorise.smartcampus.service.tobike.data.message;
+
+message Stazione {
+ required string codice = 1;
+ required string nome = 2;
+ required string indirizzo = 3;
+ required double latitude = 4;
+ required double longitude = 5;
+ required string stato = 6;
+ required int32 posti = 7;
+ required int32 biciclette = 8;
+ }
