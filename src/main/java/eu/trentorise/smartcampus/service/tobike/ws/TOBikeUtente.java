@@ -32,7 +32,7 @@ public class TOBikeUtente
         try {
             URL baseUrl;
             baseUrl = eu.trentorise.smartcampus.service.tobike.ws.TOBikeUtente.class.getResource(".");
-            url = new URL(baseUrl, "file:/C:/workspace-GIT/smartcampus.service.tobike/src/main/resources/tobike.wsdl");
+            url = new URL(baseUrl, "http://service.tobike.it/service.asmx?wsdl");
         } catch (MalformedURLException e) {
             logger.warning("Failed to create URL for the wsdl Location: 'file:/C:/workspace-GIT/smartcampus.service.tobike/src/main/resources/tobike.wsdl', retrying as a local file");
             logger.warning(e.getMessage());
