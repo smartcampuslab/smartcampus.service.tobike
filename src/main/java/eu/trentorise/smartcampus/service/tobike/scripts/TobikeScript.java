@@ -18,8 +18,7 @@ package eu.trentorise.smartcampus.service.tobike.scripts;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
 
 import eu.trentorise.smartcampus.service.tobike.data.message.Tobike.Stazione;
