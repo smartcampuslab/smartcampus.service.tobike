@@ -16,7 +16,7 @@ import eu.trentorise.smartcampus.service.tobike.impl.GetStazioniDataFlow;
 public class TestDataFlow extends TestCase {
 	
 	public void testRun() throws Exception {
-		DataFlowTestHelper helper = new DataFlowTestHelper();
+		DataFlowTestHelper helper = new DataFlowTestHelper("test");
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("user", "");
 		parameters.put("password", "");
