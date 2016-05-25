@@ -18,6 +18,8 @@ package eu.trentorise.smartcampus.service.tobike.scripts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.Charsets;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
 
@@ -35,6 +37,7 @@ public class TobikeScript {
 		TOBikeUtente wsc = new TOBikeUtente();
 		String s =  wsc.getTOBikeUtenteSoap().elencoStazioniPerComuneJSON(user, password, code);
 		s = s.substring(1, s.length() - 1);
+		s = new String(s.getBytes(Charsets.ISO_8859_1), Charsets.UTF_8);
 		
 		String stazioni[] = s.split("\\|");
 		
